@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include <math.h>
 
 /*
 I just want to realize a solar system in realistic proportions
@@ -34,14 +33,14 @@ char* names[N] = {
 #define AU 1.496e11
 double distance_from_sun[N] = {
      0.0,
-     0.39 * log(AU),
-     0.72 * log(AU),
-     1.00 * log(AU),
-     1.52 * log(AU),
-     5.20 * log(AU),
-     9.54 * log(AU),
-    19.22 * log(AU),
-    30.06 * log(AU)
+     0.39 * AU,
+     0.72 * AU,
+     1.00 * AU,
+     1.52 * AU,
+     5.20 * AU,
+     9.54 * AU,
+    19.22 * AU,
+    30.06 * AU
 };
 
 typedef struct {
@@ -80,6 +79,7 @@ void DrawPlanet(Planet* planet) {
     DrawCircle(x, y, r, c);
 
     int i = planet - planets;
+    if (i < 3) return;
     DrawText(names[i], x-r, y+r, r, WHITE);
 }
 
